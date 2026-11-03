@@ -13,7 +13,7 @@ Archive a regular Anki deck without exporting its cards, and restore it when you
 ## Install or update
 
 1. Make a complete collection backup: in Anki choose **File → Export**, export the full collection including scheduling and media, and keep the backup outside the profile. Anki's automatic backups are useful as well.
-2. Download `AnkiDeckArchive.ankiaddon` from [Releases](../../releases) and install it via **Tools → Add-ons → Install from file** (or open the file in Windows).
+2. Download `AnkiDeckArchive.ankiaddon` from [Releases](https://github.com/phunguyen1006/anki-deck-archive/releases) and install it via **Tools → Add-ons → Install from file** (or open the file in Windows).
 3. Restart Anki. Installing the add-on does not automatically move any decks.
 
 ## Archive and restore

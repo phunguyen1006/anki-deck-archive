@@ -6,7 +6,7 @@ and 26.09. This applies a default; users can subsequently change the scope.
 from __future__ import annotations
 import json
 import logging
-from aqt.qt import QLabel, QTimer
+from aqt.qt import QLabel, QSizePolicy, QTimer
 from .core import service
 
 log = logging.getLogger(__name__)
@@ -27,6 +27,17 @@ def search_script(query):
     })()""" % (json.dumps(query), json.dumps(query))
 
 
+def add_status_label(dialog, text):
+    """Keep the notice compact and give extra vertical space to the graphs."""
+    label = QLabel(text, dialog)
+    label.setWordWrap(True)
+    label.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
+    layout = dialog.layout()
+    layout.insertWidget(0, label)
+    layout.setStretchFactor(dialog.form.web, 1)
+    return label
+
+
 def setup_stats(dialog):
     """Use Anki's existing graphs with a clearly labelled default scope."""
     try:
@@ -37,14 +48,10 @@ def setup_stats(dialog):
             return
     except Exception:
         log.exception("Cannot construct automatic statistics scope")
-        label = QLabel("Archive filter could not be applied. Statistics may include archived cards.", dialog)
-        label.setWordWrap(True)
-        dialog.layout().insertWidget(0, label)
+        add_status_label(dialog, "Archive filter could not be applied. Statistics may include archived cards.")
         return
 
-    label = QLabel("Applying archive filter to statistics…", dialog)
-    label.setWordWrap(True)
-    dialog.layout().insertWidget(0, label)
+    label = add_status_label(dialog, "Applying archive filter to statistics…")
     web = dialog.form.web
     generation = [0]
     alive = [True]

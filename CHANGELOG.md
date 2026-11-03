@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 — experimental
+
+- Fix the Statistics archive-filter notice taking up much of the window. The notice now stays compact and the graphs receive the remaining space as the window is resized.
+- Add native Qt layout regression checks for normal and error notices at several window sizes.
+
 ## 0.2.0 — experimental
 
 - Automatically initialize modern Statistics with an active-card search when archived decks exist.

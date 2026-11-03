@@ -261,9 +261,11 @@ def test_statistics_hook_applies_scope_and_reports_failure(col, monkeypatch):
     class Label:
         def __init__(self, text, parent): self.text = text
         def setWordWrap(self, value): pass
+        def setSizePolicy(self, *args): pass
         def setText(self, text): self.text = text
     class Layout:
         def insertWidget(self, index, label): self.label = label
+        def setStretchFactor(self, widget, factor): pass
     class Web:
         def __init__(self): self.loadFinished = Signal(); self.result = True
         def evalWithCallback(self, script, callback):
